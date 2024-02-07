@@ -46,7 +46,7 @@ body {
                 }
             }
         }
-
+        
         .whatsapp-chatContainer {
             height: 33.33%;
         }
@@ -79,6 +79,11 @@ body {
             }
         }
     }
+}
+.callicons{
+    margin-right: 10px; 
+    display: flex;
+    gap: 15px;
 }
 #backbutton {
     margin-left: 5px;
