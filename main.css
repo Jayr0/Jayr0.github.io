@@ -2,3 +2,59 @@
     padding: unset;
     margin: unset;
 }
+
+body {
+    overflow: hidden;
+
+    .whatsapp-container {
+        width: 390px;
+        height: calc(100vh + 10px);
+        background-image: url('/images/wallpaper.jpg');
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        i {
+            color: rgb(70, 70, 162);
+        }
+
+        .whatsapp-topbar {
+            height: 33.33%;
+            margin-top: 15px;
+        }
+
+        .whatsapp-chatContainer {
+            height: 33.33%;
+        }
+
+        .whatsapp-textArea {
+            height: 33.33%;
+
+            display: flex;
+            flex-direction: row;
+            align-items: end;
+            justify-content: center;
+            margin-bottom: 5px;
+            .textArea-container {
+                width: 390px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: rgb(13, 13, 13);
+                gap: 10px;
+                height: 50px;
+
+                .text-container {
+                    background-color: rgb(50, 50, 50);
+                    border-radius: 44px;
+                    border: 1px solid rgb(96, 96, 96);
+                    width: 260px;
+                    height: 25px;
+                    margin-bottom: 2px;
+                }   
+            }
+        }
+    }
+}
