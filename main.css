@@ -3,6 +3,8 @@
     margin: unset;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu&display=swap');
+
 body {
     overflow: hidden;
 
@@ -38,7 +40,8 @@ body {
 
                     p {
                         color: white;
-                        margin-left: 10px
+                        margin-left: 10px;
+                        font-family: 'Open Sans', sans-serif;
                     }
                 }
             }
