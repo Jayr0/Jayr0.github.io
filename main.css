@@ -22,7 +22,26 @@ body {
 
         .whatsapp-topbar {
             height: 33.33%;
-            margin-top: 15px;
+            width: 390px;
+
+            .topbar-container {
+                height: 50px;
+                background-color: rgb(13, 13 ,13);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .profile {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    p {
+                        color: white;
+                        margin-left: 10px
+                    }
+                }
+            }
         }
 
         .whatsapp-chatContainer {
@@ -57,4 +76,18 @@ body {
             }
         }
     }
+}
+#backbutton {
+    margin-left: 5px;
+}
+.image{
+    border-radius: 50%;
+    height: 36px;
+    width: 36px;
+}
+.buttonimage {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
 }
