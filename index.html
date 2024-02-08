@@ -29,6 +29,7 @@
       </div>
       <div class="whatsapp-chatContainer">
         <div class="dateContainer">Today</div>
+
         <div class="messsageContainer">
           <p>Wie is Emma?</p>
           <div class="messageTime">
@@ -36,6 +37,27 @@
           </div>
           <div class="messageCorner"></div>
         </div>
+
+        <div class="messageOptions">
+          <div class="messageOption">
+            <p>dit is keuze 1</p>
+            >
+          </div>
+          <div class="messageOption">
+            <p>keuze 2 is ook een optie</p>
+          </div>
+          <div class="messageOption">
+            <p>ik ben keuze 3!</p>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="toggleResponsesButton"
+          onclick="toggleResponses()"
+        >
+          <i class="las la-comment-dots la-2x"></i>
+        </button>
       </div>
       <div class="whatsapp-textArea">
         <div class="textArea-container">
@@ -48,3 +70,13 @@
     </div>
   </body>
 </html>
+
+<script>
+  function toggleResponses() {
+    if (document.querySelector(".messageOptions").style.display === "flex") {
+      document.querySelector(".messageOptions").style.display = "none";
+    } else {
+      document.querySelector(".messageOptions").style.display = "flex";
+    }
+  }
+</script>
