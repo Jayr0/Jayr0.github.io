@@ -105,13 +105,31 @@ body {
     position: absolute;
     top: 100px;
     left: 15px;
-    background: red;
+    border-radius: 30px 30px 30px 30px;
+    background: rgb(59, 59, 59);
+    
 }
 .dateContainer{
-    height: 10px;
+    height: 18px;
     width: 50px;
     position: absolute;
-    top: 75px;
-    
-    background-color: red;
+    top: 65px;
+    left: 162px;
+    border-radius: 5px;
+    background-color: rgb(13, 13 ,13);
+    color: rgb(132, 131, 131);
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+}
+.messageCorner{
+    position: absolute;
+    left: -1px;
+    bottom: 0;
+    background: rgb(59, 59 ,59);
+    width: 10px;
+    height: 10px;
+    transform: rotate(110deg);
+    border-radius: 0px 10px 0px 10px;
 }
