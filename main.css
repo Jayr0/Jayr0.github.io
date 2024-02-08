@@ -28,7 +28,8 @@ body {
 
             .topbar-container {
                 height: 50px;
-                background-color: rgb(13, 13 ,13);
+                background-color: rgb(13, 13 ,13, 0.9);
+                filter: blur(.5);
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
@@ -42,6 +43,7 @@ body {
                         color: white;
                         margin-left: 10px;
                         font-family: 'Open Sans', sans-serif;
+                        font-weight: 500;
                     }
                 }
             }
@@ -50,7 +52,6 @@ body {
         .whatsapp-chatContainer {
             height: 33.33%;
         }
-
         .whatsapp-textArea {
             height: 33.33%;
 
@@ -63,10 +64,11 @@ body {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background-color: rgb(13, 13, 13);
+                background-color: rgb(13, 13, 13, 0.8);
+                filter: blur(.5);
                 gap: 10px;
                 height: 50px;
-
+                border-top: 1px solid rgb(62, 62, 62);
                 .text-container {
                     background-color: rgb(50, 50, 50);
                     border-radius: 44px;
@@ -98,11 +100,10 @@ body {
     align-items: center;
     justify-content: space-between;
 }
-
 .messsageContainer{
     height: 25px;
     width: calc(100% + 10px);
-    max-width: 165px;
+    max-width: 155px;
     position: absolute;
     top: 100px;
     left: 15px;
@@ -116,9 +117,9 @@ body {
         z-index: 100;
         margin-left: 12px;
         margin-top: 3px;
+        font-size: 15px;
         font-family: 'Open Sans', sans-serif;
     }
-
 }
 .messageTime p{
     color: rgb(121, 121, 121);
@@ -141,7 +142,9 @@ body {
     font-size: 12px;
     font-weight: 600;
 }
-
+.dateContainer p{
+    margin-top: 1.5px;
+}
 .messageCorner{
     position: absolute;
     left: -1px;
