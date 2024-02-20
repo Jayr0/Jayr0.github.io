@@ -5,12 +5,13 @@
 
 html, body {
     height: 100%;
+    overflow: hidden;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu&display=swap');
 
 body {
-    /* overflow: hidden; */
+    overflow: hidden;
     display: flex;
     flex-direction: column;
 
@@ -290,8 +291,6 @@ body {
     color: white;
 }
 
-
-
 .message-opptions{
     /* height: 25px; */
     display: flex;
@@ -305,11 +304,16 @@ body {
 }
 
 .message-opptions-container{
-    position: fixed;
+    /* position: fixed; */
     bottom: 50px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px;
     width: 100%;
+    background-color: black;
 }
 
 .message-opptions-linecontainer{
