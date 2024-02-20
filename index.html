@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>bomboclat</title>
+    <title>whatsapp interface</title>
     <link
       rel="stylesheet"
       href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
@@ -38,6 +38,7 @@
       </div>
       <div class="whatsapp-chatContainer">
         <div class="dateContainer">Today</div>
+
         <div class="messsageContainer">
           <p>Wie is Emma?</p>
           <div class="messageTime">
@@ -73,8 +74,18 @@
           <div class="text-container"></div>
           <i class="las la-camera la-2x"></i>
           <i class="las la-microphone la-2x"></i>
-        </div>
+        </div >
       </div>
     </div>
   </body>
 </html>
+
+<script>
+  function toggleResponses() {
+    if (document.querySelector(".messageOptions").style.display === "flex") {
+      document.querySelector(".messageOptions").style.display = "none";
+    } else {
+      document.querySelector(".messageOptions").style.display = "flex";
+    }
+  }
+</script>
