@@ -144,8 +144,8 @@ body {
 }
 
 .girl-message {
-    /* height: 25px; */
     display: flex;
+    position: relative;
     border-radius: 10px;
     background: rgb(59, 59, 59);
     font-family: 'Open Sans', sans-serif;
@@ -154,14 +154,31 @@ body {
 }
 
 .you-message {
-    /* height: 25px; */
     display: flex;
+    position: relative;
     border-radius: 10px;
     background-color: #005F4B;
     font-family: 'Open Sans', sans-serif;
     padding: 5px 10px 5px 10px;
     max-width: 80%;
 }
+
+.message-time-fill {
+    display: inline;
+    visibility: hidden;
+    font-size: 11px;
+    font-family: 'Open Sans', sans-serif
+}
+
+.message-time {
+    position: absolute;
+    bottom: 4px;
+    right: 10px;
+    color: rgb(121, 121, 121);
+    font-size: 11px;
+    font-family: 'Open Sans', sans-serif
+}
+
 
 .messageTime p {
     color: rgb(121, 121, 121);
@@ -288,4 +305,5 @@ body {
 
 .message {
     color: white;
+    display: inline;
 }

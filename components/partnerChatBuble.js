@@ -8,8 +8,10 @@ class PartnerChatBubble extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
             <div class="girl-messsageContainer">
-                <div class="girl-message message">
+                <div class="girl-message message"">
                     ${this.text}
+                    <span class="message-time-fill">${this.time}</span>
+                    <span class="message-time">${this.time}</span>
                 </div>
                 <div class="messageCorner"></div>
             </div>
