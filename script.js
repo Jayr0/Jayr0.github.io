@@ -38,7 +38,7 @@ let geduldCountdownInterval;
 let currentMessageIndex = 0;
 
 /**
- * Change the value of geduld. and also send it to the API.
+ * Change the value of geduld. and send it to the API.
  * The geduld cant go lower than 0 and higher than 100.
  * @param valueChange number to add to geduld. e.g: 15, -5
  */
@@ -119,7 +119,7 @@ async function handleUserMessage(message) {
 
     const partnerResponseMessage = partnerResponses[currentMessageIndex][index];
 
-    // Send response message in 20s and wait until this is done.
+    // Send response message in 20s while waiting until this is done.
     await new Promise(resolve => setTimeout(() => {
         sendMessage(partnerResponseMessage, "partner");
         resolve();
@@ -127,7 +127,7 @@ async function handleUserMessage(message) {
 
     currentMessageIndex++;
 
-    // If messages left schedule next message
+    // If messages left to send schedule next message
     if (currentMessageIndex < partnerMessages.length) {
         setTimeout(startMessageCycle, messageInterval);
     }
