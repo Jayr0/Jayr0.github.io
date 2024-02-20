@@ -54,8 +54,8 @@ function setCurrentGeduld(valueChange) {
     sendGeduld(geduld);
 }
 
-async function sendGeduld(newGeduld) {
-    await fetch('https://api.rutgerpronk.com/geduld', {
+function sendGeduld(newGeduld) {
+    fetch('https://api.rutgerpronk.com/geduld', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -66,8 +66,8 @@ async function sendGeduld(newGeduld) {
 
 /**
  * Send a message to the chat and scroll to the bottom of the chat.
- * @param elementName The type of message to greate. e.g: "user" or "partner"
  * @param message The message to send.
+ * @param messageType The type of message to greate. e.g: "user" or "partner"
  */
 function sendMessage(message, messageType) {
     const now = new Date();
@@ -102,7 +102,7 @@ function startMessageCycle() {
 
 async function handleUserMessage(message) {
     const messageElements = document.querySelectorAll(".message-opptions");
-    messageElements.forEach((element, index) => {
+    messageElements.forEach((element) => {
         element.style.visibility = "hidden";
     });
 
