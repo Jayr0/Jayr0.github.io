@@ -71,9 +71,13 @@ async function sendGeduld(newGeduld) {
  */
 function sendMessage(message, messageType) {
     const now = new Date();
+    // To add a leading zero to the hours and minutes when they are less than 10
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+
     const messageElement = document.createElement(`${messageType}-chat-bubble`);
     messageElement.setAttribute("text", message);
-    messageElement.setAttribute("time", `${now.getHours()}:${now.getMinutes()}`);
+    messageElement.setAttribute("time", `${hours}:${minutes}`);
 
     const messagesContainer = document.querySelector('#messages-container');
     messagesContainer.appendChild(messageElement);
@@ -97,17 +101,6 @@ function startMessageCycle() {
 }
 
 async function handleUserMessage(message) {
-    // Verify before sending message
-    const index = messageResponses[currentMessageIndex].indexOf(message);
-
-    if (index === 0) {
-        setCurrentGeduld(20);
-    } else if (index === 2) {
-        setCurrentGeduld(-10);
-    } else if (index === -1) {
-        throw new Error('Invalid message');
-    }
-
     const messageElements = document.querySelectorAll(".message-opptions");
     messageElements.forEach((element, index) => {
         element.style.visibility = "hidden";
@@ -116,6 +109,13 @@ async function handleUserMessage(message) {
     sendMessage(message, "user");
 
     clearInterval(geduldCountdownInterval);
+
+    const index = messageResponses[currentMessageIndex].indexOf(message);
+    if (index === 0) {
+        setCurrentGeduld(20);
+    } else if (index === 2) {
+        setCurrentGeduld(-10);
+    }
 
     const partnerResponseMessage = partnerResponses[currentMessageIndex][index];
 
