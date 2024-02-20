@@ -1,13 +1,3 @@
-async function sendGeduld(newGeduld) {
-    await fetch('https://api.rutgerpronk.com/geduld', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({newGeduld})
-    });
-}
-
 const partnerMessages = [
     "Wie is Emma?",
     "Waar ben je? Ik ben nu onderweg naar jou.",
@@ -17,6 +7,7 @@ const partnerMessages = [
     "Met wie was je gister uit??",
     "Ik ben er bijna…",
 ]
+
 const messageResponses = [
     ["Over wie heb je het??", "Ik heb een kater en herinner me niets meer", "Mijn nieuwe vriendin"],
     ["Ik ben thuis, me klaar aan het maken voor jou", "Ik ben thuis", "Ik ben aan het slapen"],
@@ -42,11 +33,13 @@ const responseDelay = 12000 // 20 seconds
 const geduldCountDownInterval = 3000; // 3 seconds
 
 let geduld = 50;
-
 let geduldCountdownInterval;
+
+let currentMessageIndex = 0;
 
 /*
 * Change the value of geduld. and also send it to the API.
+* The geduld cant go lower than 0 and higher than 100.
 * @param valueChange number to add to geduld. e.g: 15, -5
  */
 function setCurrentGeduld(valueChange) {
@@ -54,7 +47,15 @@ function setCurrentGeduld(valueChange) {
     sendGeduld(geduld);
 }
 
-let currentMessageIndex = 0;
+async function sendGeduld(newGeduld) {
+    await fetch('https://api.rutgerpronk.com/geduld', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({newGeduld})
+    });
+}
 
 function sendPartnerMessage(message) {
     const now = new Date();
