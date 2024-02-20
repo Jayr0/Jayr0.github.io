@@ -37,3 +37,71 @@ const partnerResponses = [
     ["Whatever", "Oke??", "You’re Done!!!"],
 ];
 
+const messageInterval = 340000; // 5 minutes 40 seconds
+const responseDelay = 12000 // 20 seconds
+const geduldCountDownInterval = 3000; // 3 seconds
+
+let geduld = 50;
+
+let geduldCountdownInterval;
+
+/*
+* Change the value of geduld. and also send it to the API.
+* @param valueChange number to add to geduld. e.g: 15, -5
+ */
+function setCurrentGeduld(valueChange) {
+    geduld += valueChange
+    sendGeduld(geduld);
+}
+
+let currentMessageIndex = 0;
+
+function sendPartnerMessage(message) {
+    const now = new Date();
+    console.log(`${now.getHours()}:${now.getMinutes()} [PARTNER]: ${message}`) // TODO make logic for altering HTML
+}
+
+function sendUserMessage(message) {
+    const now = new Date();
+    console.log(`${now.getHours()}:${now.getMinutes()} [USER]: ${message}`) // TODO make logic for altering HTML
+}
+
+function startMessageCycle() {
+    sendPartnerMessage(partnerMessages[currentMessageIndex]);
+    geduldCountdownInterval = setInterval(() => {
+        setCurrentGeduld(-1);
+    }, geduldCountDownInterval);
+}
+
+// TODO make logic for sending message in HTML
+async function handleUserMessage(message) {
+    sendUserMessage(message);
+
+    clearInterval(geduldCountdownInterval);
+
+    const index = messageResponses[currentMessageIndex].indexOf(message);
+
+    if (index === 0) {
+        setCurrentGeduld(20);
+    } else if (index === 2) {
+        setCurrentGeduld(-10);
+    } else if (index === -1) {
+        throw new Error('Invalid message');
+    }
+
+    const partnerResponseMessage = partnerResponses[currentMessageIndex][index];
+
+    // Send response message in 20s and wait until this is done.
+    await new Promise(resolve =>
+        setTimeout(() => {
+            sendPartnerMessage(partnerResponseMessage);
+            return resolve
+        }, responseDelay)
+    );
+
+    currentMessageIndex++;
+
+    setTimeout(startMessageCycle, messageInterval);
+}
+
+startMessageCycle();
