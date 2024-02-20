@@ -315,6 +315,7 @@ body {
     position: relative;
     border-radius: 10px;
     background-color: #005F4B;
+    visibility: hidden;
     font-family: 'Open Sans', sans-serif;
     padding: 5px 10px 5px 10px;
     max-width: 80%;

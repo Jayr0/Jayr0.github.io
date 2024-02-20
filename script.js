@@ -19,7 +19,7 @@ const messageResponses = [
 ]
 
 const partnerResponses = [
-    ["DAT VRAAG IK AAN JOU!!", "Je had ook nooit moeten drinken (boze emoji) Ik kom eraan", "JE KAN HIER MAAR BETER EEN GOEDE UITLEG VOOR HEBBEN, IK KOM ERAAN!!!"],
+    ["DAT VRAAG IK AAN JOU!!", "Je had ook nooit moeten drinken 😡 Ik kom eraan", "JE KAN HIER MAAR BETER EEN GOEDE UITLEG VOOR HEBBEN, IK KOM ERAAN!!!"],
     ["Wat lief, ik kom eraan ❤️", "Oké ik kom eraan blijf daar.", "Kom dan uit bed en zorg dat je je shit bij elkaar hebt, ik kom eraan."],
     ["Hoezo weet je dat niet?? Je had ook niet zoveel moeten drinken!!", "Hoezo herinner je niets meer 😡", "Ik ben je partner natuurlijk gaat het me aan waar je gister was!!!"],
     ["OVER EMMA, WIE IS ZE!!?", "Blijf zoeken", "Ga dan zoeken!! 😡"],
@@ -66,12 +66,12 @@ async function sendGeduld(newGeduld) {
 
 /**
  * Send a message to the chat and scroll to the bottom of the chat.
- * @param elementName The name of the element to create. e.g: "user-chat-bubble" or "partner-chat-bubble"
+ * @param elementName The type of message to greate. e.g: "user" or "partner"
  * @param message The message to send.
  */
-function sendMessage(elementName, message) {
+function sendMessage(message, messageType) {
     const now = new Date();
-    const messageElement = document.createElement(elementName);
+    const messageElement = document.createElement(`${messageType}-chat-bubble`);
     messageElement.setAttribute("text", message);
     messageElement.setAttribute("time", `${now.getHours()}:${now.getMinutes()}`);
 
@@ -83,13 +83,19 @@ function sendMessage(elementName, message) {
 }
 
 function startMessageCycle() {
-    sendMessage("partner-chat-bubble", partnerMessages[currentMessageIndex]);
+    sendMessage(partnerMessages[currentMessageIndex], "partner");
+
+    const messageElements = document.querySelectorAll(".message-opptions");
+    messageElements.forEach((element, index) => {
+        element.innerText = messageResponses[currentMessageIndex][index];
+        element.style.visibility = "visible";
+    });
+
     geduldCountdownInterval = setInterval(() => {
         setCurrentGeduld(-1);
     }, geduldCountDownInterval);
 }
 
-// TODO make logic for sending message in HTML
 async function handleUserMessage(message) {
     // Verify before sending message
     const index = messageResponses[currentMessageIndex].indexOf(message);
@@ -102,27 +108,29 @@ async function handleUserMessage(message) {
         throw new Error('Invalid message');
     }
 
-    sendMessage("user-chat-bubble", message);
+    const messageElements = document.querySelectorAll(".message-opptions");
+    messageElements.forEach((element, index) => {
+        element.style.visibility = "hidden";
+    });
+
+    sendMessage(message, "user");
 
     clearInterval(geduldCountdownInterval);
-
 
     const partnerResponseMessage = partnerResponses[currentMessageIndex][index];
 
     // Send response message in 20s and wait until this is done.
     await new Promise(resolve => setTimeout(() => {
-        sendMessage("partner-chat-bubble", partnerResponseMessage);
-        return resolve
+        sendMessage(partnerResponseMessage, "partner");
+        resolve();
     }, responseDelay));
 
     currentMessageIndex++;
 
-    setTimeout(startMessageCycle, messageInterval);
+    // If messages left schedule next message
+    if (currentMessageIndex < partnerMessages.length) {
+        setTimeout(startMessageCycle, messageInterval);
+    }
 }
 
 startMessageCycle();
-
-// Simulate the user sending a message
-setTimeout(() => {
-    handleUserMessage("Over wie heb je het??");
-}, 3000);
