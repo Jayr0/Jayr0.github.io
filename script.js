@@ -37,10 +37,10 @@ let geduldCountdownInterval;
 
 let currentMessageIndex = 0;
 
-/*
-* Change the value of geduld. and also send it to the API.
-* The geduld cant go lower than 0 and higher than 100.
-* @param valueChange number to add to geduld. e.g: 15, -5
+/**
+ * Change the value of geduld. and also send it to the API.
+ * The geduld cant go lower than 0 and higher than 100.
+ * @param valueChange number to add to geduld. e.g: 15, -5
  */
 function setCurrentGeduld(valueChange) {
     geduld += valueChange
@@ -64,18 +64,26 @@ async function sendGeduld(newGeduld) {
     });
 }
 
-function sendPartnerMessage(message) {
+/**
+ * Send a message to the chat and scroll to the bottom of the chat.
+ * @param elementName The name of the element to create. e.g: "user-chat-bubble" or "partner-chat-bubble"
+ * @param message The message to send.
+ */
+function sendMessage(elementName, message) {
     const now = new Date();
-    console.log(`${now.getHours()}:${now.getMinutes()} [PARTNER]: ${message}`) // TODO make logic for altering HTML
-}
+    const messageElement = document.createElement(elementName);
+    messageElement.setAttribute("text", message);
+    messageElement.setAttribute("time", `${now.getHours()}:${now.getMinutes()}`);
 
-function sendUserMessage(message) {
-    const now = new Date();
-    console.log(`${now.getHours()}:${now.getMinutes()} [USER]: ${message}`) // TODO make logic for altering HTML
+    const messagesContainer = document.querySelector('#messages-container');
+    messagesContainer.appendChild(messageElement);
+
+    // Scroll to the bottom of the chat
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
 function startMessageCycle() {
-    sendPartnerMessage(partnerMessages[currentMessageIndex]);
+    sendMessage("partner-chat-bubble", partnerMessages[currentMessageIndex]);
     geduldCountdownInterval = setInterval(() => {
         setCurrentGeduld(-1);
     }, geduldCountDownInterval);
@@ -83,10 +91,7 @@ function startMessageCycle() {
 
 // TODO make logic for sending message in HTML
 async function handleUserMessage(message) {
-    sendUserMessage(message);
-
-    clearInterval(geduldCountdownInterval);
-
+    // Verify before sending message
     const index = messageResponses[currentMessageIndex].indexOf(message);
 
     if (index === 0) {
@@ -97,15 +102,18 @@ async function handleUserMessage(message) {
         throw new Error('Invalid message');
     }
 
+    sendMessage("user-chat-bubble", message);
+
+    clearInterval(geduldCountdownInterval);
+
+
     const partnerResponseMessage = partnerResponses[currentMessageIndex][index];
 
     // Send response message in 20s and wait until this is done.
-    await new Promise(resolve =>
-        setTimeout(() => {
-            sendPartnerMessage(partnerResponseMessage);
-            return resolve
-        }, responseDelay)
-    );
+    await new Promise(resolve => setTimeout(() => {
+        sendMessage("partner-chat-bubble", partnerResponseMessage);
+        return resolve
+    }, responseDelay));
 
     currentMessageIndex++;
 
@@ -113,3 +121,8 @@ async function handleUserMessage(message) {
 }
 
 startMessageCycle();
+
+// Simulate the user sending a message
+setTimeout(() => {
+    handleUserMessage("Over wie heb je het??");
+}, 3000);

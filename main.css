@@ -21,7 +21,7 @@ body {
         overflow-y: scroll;
 
         flex: 1;
-        /* background-image: url('./images/wallpaper.jpg'); */
+        background-image: url('./images/wallpaper.jpg');
 
         display: flex;
         flex-direction: column;
@@ -309,7 +309,7 @@ body {
     display: inline;
 }
 
-.message-opptions{
+.message-opptions {
     /* height: 25px; */
     display: flex;
     position: relative;
@@ -321,7 +321,7 @@ body {
     color: white;
 }
 
-.message-opptions-container{
+.message-opptions-container {
     /* position: fixed; */
     bottom: 50px;
     display: flex;
@@ -334,7 +334,7 @@ body {
     background-color: black;
 }
 
-.message-opptions-linecontainer{
+.message-opptions-linecontainer {
     display: flex;
     flex-direction: row;
     width: 100%;
