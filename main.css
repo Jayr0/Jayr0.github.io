@@ -5,12 +5,13 @@
 
 html, body {
     height: 100%;
+    overflow: hidden;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu&display=swap');
 
 body {
-    /* overflow: hidden; */
+    overflow: hidden;
     display: flex;
     flex-direction: column;
 
@@ -306,4 +307,36 @@ body {
 .message {
     color: white;
     display: inline;
+}
+
+.message-opptions{
+    /* height: 25px; */
+    display: flex;
+    position: relative;
+    border-radius: 10px;
+    background-color: #005F4B;
+    font-family: 'Open Sans', sans-serif;
+    padding: 5px 10px 5px 10px;
+    max-width: 80%;
+    color: white;
+}
+
+.message-opptions-container{
+    /* position: fixed; */
+    bottom: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px;
+    width: 100%;
+    background-color: black;
+}
+
+.message-opptions-linecontainer{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 5px;
 }
