@@ -44,6 +44,13 @@ let currentMessageIndex = 0;
  */
 function setCurrentGeduld(valueChange) {
     geduld += valueChange
+
+    if (geduld > 100) {
+        geduld = 100
+    } else if (geduld < 0) {
+        geduld = 0;
+    }
+
     sendGeduld(geduld);
 }
 
