@@ -31,6 +31,8 @@ const partnerResponses = [
 const messageInterval = 340000; // 5 minutes 40 seconds
 const responseDelay = 12000 // 20 seconds
 const geduldCountDownInterval = 3000; // 3 seconds
+const responseOptionsContainer = document.querySelector('.message-opptions-container');
+
 
 let geduld = 50;
 let geduldCountdownInterval;
@@ -94,8 +96,9 @@ function startMessageCycle() {
     const messageElements = document.querySelectorAll(".message-opptions");
     messageElements.forEach((element, index) => {
         element.innerText = messageResponses[currentMessageIndex][index];
-        element.style.visibility = "visible";
     });
+    responseOptionsContainer.style.display = "flex";
+
 
     geduldCountdownInterval = setInterval(() => {
         setCurrentGeduld(-1);
@@ -103,10 +106,7 @@ function startMessageCycle() {
 }
 
 async function handleUserMessage(message) {
-    const messageElements = document.querySelectorAll(".message-opptions");
-    messageElements.forEach((element) => {
-        element.style.visibility = "hidden";
-    });
+    responseOptionsContainer.style.display = "none";
 
     sendMessage(message, "user");
 
