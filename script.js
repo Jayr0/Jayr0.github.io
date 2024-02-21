@@ -72,11 +72,12 @@ function sendGeduld(newGeduld) {
 
 // Fisher-Yates (aka Knuth) Shuffle function
 function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
+    const shuffledArray = [...array];
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+        [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
     }
-    return array;
+    return shuffledArray;
 }
 
 function createMessageElement(message, messageType) {
@@ -129,15 +130,6 @@ function startMessageCycle() {
     }, geduldCountDownInterval);
 }
 
-function handleSendMessageButton() {
-    handleTextFieldMessage(textArea.value);
-    textArea.value = "";
-    // Fire textarea event so the size is reset and sendButton will return to microphone icon.
-    textArea.dispatchEvent(new Event('input'));
-
-
-    textArea.disabled = true;
-}
 
 async function handleUserMessage(message) {
     responseOptionsContainer.style.display = "none";
@@ -200,6 +192,16 @@ function handleTextFieldMessage(message) {
     } else {
         setGeduld(-100);
     }
+}
+
+function handleSendMessageButton() {
+    handleTextFieldMessage(textArea.value);
+    textArea.value = "";
+    // Fire textarea event so the size is reset and sendButton will return to microphone icon.
+    textArea.dispatchEvent(new Event('input'));
+
+
+    textArea.disabled = true;
 }
 
 startMessageCycle();
