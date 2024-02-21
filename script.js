@@ -28,11 +28,11 @@ const partnerResponses = [
     ["Whatever", "Oke??", "You’re Done!!!"],
 ];
 
+const responseOptionsContainer = document.querySelector('.message-opptions-container');
+
 const messageInterval = 340000; // 5 minutes 40 seconds
 const responseDelay = 12000 // 20 seconds
 const geduldCountDownInterval = 3000; // 3 seconds
-const responseOptionsContainer = document.querySelector('.message-opptions-container');
-
 
 let geduld = 50;
 let geduldCountdownInterval;
