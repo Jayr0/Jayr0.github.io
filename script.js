@@ -61,13 +61,13 @@ function setGeduld(valueChange) {
 }
 
 function sendGeduld(newGeduld) {
-    // fetch('https://api.rutgerpronk.com/geduld', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({newGeduld})
-    // });
+    fetch('https://api.rutgerpronk.com/geduld', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({newGeduld})
+    });
 }
 
 // Fisher-Yates (aka Knuth) Shuffle function
