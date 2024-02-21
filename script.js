@@ -66,6 +66,15 @@ function sendGeduld(newGeduld) {
     });
 }
 
+// Fisher-Yates (aka Knuth) Shuffle function
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
 /**
  * Send a message to the chat and scroll to the bottom of the chat.
  * @param message The message to send.
@@ -93,9 +102,11 @@ function sendMessage(message, messageType) {
 function startMessageCycle() {
     sendMessage(partnerMessages[currentMessageIndex], "partner");
 
+    const shuffledResponses = shuffleArray(messageResponses[currentMessageIndex]);
+
     const messageElements = document.querySelectorAll(".message-opptions");
     messageElements.forEach((element, index) => {
-        element.innerText = messageResponses[currentMessageIndex][index];
+        element.innerText = shuffledResponses[index];
     });
     responseOptionsContainer.style.display = "flex";
 
