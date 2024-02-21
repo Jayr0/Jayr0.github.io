@@ -28,7 +28,9 @@ const partnerResponses = [
     ["Whatever", "Oke??", "You’re Done!!!"],
 ];
 
+const messagesContainer = document.querySelector('#messages-container');
 const responseOptionsContainer = document.querySelector('.message-opptions-container');
+const messageElements = document.querySelectorAll(".message-opptions");
 
 const messageInterval = 340000; // 5 minutes 40 seconds
 const responseDelay = 12000 // 20 seconds
@@ -44,7 +46,7 @@ let currentMessageIndex = 0;
  * The geduld cant go lower than 0 and higher than 100.
  * @param valueChange number to add to geduld. e.g: 15, -5
  */
-function setCurrentGeduld(valueChange) {
+function setGeduld(valueChange) {
     geduld += valueChange
 
     if (geduld > 100) {
@@ -57,13 +59,13 @@ function setCurrentGeduld(valueChange) {
 }
 
 function sendGeduld(newGeduld) {
-    fetch('https://api.rutgerpronk.com/geduld', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({newGeduld})
-    });
+    // fetch('https://api.rutgerpronk.com/geduld', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({newGeduld})
+    // });
 }
 
 // Fisher-Yates (aka Knuth) Shuffle function
@@ -75,12 +77,7 @@ function shuffleArray(array) {
     return array;
 }
 
-/**
- * Send a message to the chat and scroll to the bottom of the chat.
- * @param message The message to send.
- * @param messageType The type of message to greate. e.g: "user" or "partner"
- */
-function sendMessage(message, messageType) {
+function createMessageElement(message, messageType) {
     const now = new Date();
     // To add a leading zero to the hours and minutes when they are less than 10
     const hours = String(now.getHours()).padStart(2, '0');
@@ -89,8 +86,17 @@ function sendMessage(message, messageType) {
     const messageElement = document.createElement(`${messageType}-chat-bubble`);
     messageElement.setAttribute("text", message);
     messageElement.setAttribute("time", `${hours}:${minutes}`);
+    return messageElement;
+}
 
-    const messagesContainer = document.querySelector('#messages-container');
+/**
+ * Send a message to the chat and scroll to the bottom of the chat.
+ * @param message The message to send.
+ * @param messageType The type of message to greate. e.g: "user" or "partner"
+ */
+function sendMessage(message, messageType) {
+    const messageElement = createMessageElement(message, messageType);
+
     messagesContainer.appendChild(messageElement);
 
     // Scroll to the bottom of the chat
@@ -102,17 +108,20 @@ function sendMessage(message, messageType) {
 function startMessageCycle() {
     sendMessage(partnerMessages[currentMessageIndex], "partner");
 
-    const shuffledResponses = shuffleArray(messageResponses[currentMessageIndex]);
-
-    const messageElements = document.querySelectorAll(".message-opptions");
-    messageElements.forEach((element, index) => {
-        element.innerText = shuffledResponses[index];
-    });
-    responseOptionsContainer.style.display = "flex";
+    // If not the last message
+    if (currentMessageIndex < partnerMessages.length - 1) {
+        const shuffledResponses = shuffleArray(messageResponses[currentMessageIndex]);
+        messageElements.forEach((element, index) => {
+            element.innerText = shuffledResponses[index];
+        });
+        responseOptionsContainer.style.display = "flex";
+    } else {
+        // TODO add logic for preparing the text field
+    }
 
 
     geduldCountdownInterval = setInterval(() => {
-        setCurrentGeduld(-1);
+        setGeduld(-1);
     }, geduldCountDownInterval);
 }
 
@@ -125,9 +134,9 @@ async function handleUserMessage(message) {
 
     const index = messageResponses[currentMessageIndex].indexOf(message);
     if (index === 0) {
-        setCurrentGeduld(20);
+        setGeduld(20);
     } else if (index === 2) {
-        setCurrentGeduld(-10);
+        setGeduld(-10);
     }
 
     const partnerResponseMessage = partnerResponses[currentMessageIndex][index];
@@ -143,6 +152,39 @@ async function handleUserMessage(message) {
     // If messages left to send schedule next message
     if (currentMessageIndex < partnerMessages.length) {
         setTimeout(startMessageCycle, messageInterval);
+    }
+}
+
+function handleTextFieldMessage(message) {
+    responseOptionsContainer.style.display = "none";
+
+    sendMessage(message, "user");
+
+    clearInterval(geduldCountdownInterval);
+
+    const validWords = [
+        " zus",
+        " zusje",
+        " sus",
+        " susje",
+        " zuis",
+        " zuls",
+        " zuz",
+        " zuus",
+        " suze",
+        " zuzje",
+        " zuz",
+        " zuss",
+        " zussje",
+        " zusjj",
+    ];
+
+    const messageContainsValidWord = validWords.some(word => message.toLowerCase().includes(word));
+
+    if (messageContainsValidWord) {
+        setGeduld(100);
+    } else {
+        setGeduld(-100);
     }
 }
 
