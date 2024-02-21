@@ -31,6 +31,8 @@ const partnerResponses = [
 const messagesContainer = document.querySelector('#messages-container');
 const responseOptionsContainer = document.querySelector('.message-opptions-container');
 const messageElements = document.querySelectorAll(".message-opptions");
+const sendTextAreaMessageButton = document.querySelector('#sendButton');
+const textArea = document.querySelector("#text-area")
 
 const messageInterval = 340000; // 5 minutes 40 seconds
 const responseDelay = 12000 // 20 seconds
@@ -116,13 +118,25 @@ function startMessageCycle() {
         });
         responseOptionsContainer.style.display = "flex";
     } else {
-        // TODO add logic for preparing the text field
+        textArea.innerText = "Ik weet wie Emma is ze is mijn: ";
+        textArea.dispatchEvent(new Event('input'));
+        textArea.disabled = false;
     }
 
 
     geduldCountdownInterval = setInterval(() => {
         setGeduld(-1);
     }, geduldCountDownInterval);
+}
+
+function handleSendMessageButton() {
+    handleTextFieldMessage(textArea.value);
+    textArea.value = "";
+    // Fire textarea event so the size is reset and sendButton will return to microphone icon.
+    textArea.dispatchEvent(new Event('input'));
+
+
+    textArea.disabled = true;
 }
 
 async function handleUserMessage(message) {
