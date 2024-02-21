@@ -51,28 +51,25 @@
 
 <div class="textArea-container">
     <i class="las la-plus la-2x"></i>
-    <div class="text-container"></div>
+    <textarea id="text-area" class="text-container" oninput="handleInput(this)" disabled></textarea>
+    <i id="sendButton" class="las la-microphone la-2x"></i>
     <i class="las la-camera la-2x"></i>
-    <i class="las la-microphone la-2x"></i>
 </div>
 
 <div class="message-opptions-container">
     <div class="message-opptions" onclick="handleUserMessage(this.innerText)">
-        test test test
-        <div class="you-messageCorner">
-        </div>
+        <!-- gets filled with javascript -->
+        <div class="you-messageCorner"></div>
     </div>
 
     <div class="message-opptions" onclick="handleUserMessage(this.innerText)">
-        test test test
-        <div class="you-messageCorner">
-        </div>
+        <!-- gets filled with javascript -->
+        <div class="you-messageCorner"></div>
     </div>
 
     <div class="message-opptions" onclick="handleUserMessage(this.innerText)">
-        test test test
-        <div class="you-messageCorner">
-        </div>
+        <!-- gets filled with javascript -->
+        <div class="you-messageCorner"></div>
     </div>
 </div>
 </body>
@@ -80,3 +77,4 @@
 
 <script src="script.js"></script>
 <script src="scripts/emptyBattery.js"></script>
+<script src="scripts/textArea.js"></script>
