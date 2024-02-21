@@ -83,7 +83,9 @@ function sendMessage(message, messageType) {
     messagesContainer.appendChild(messageElement);
 
     // Scroll to the bottom of the chat
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    setTimeout(() => {
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }, 20);
 }
 
 function startMessageCycle() {
