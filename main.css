@@ -3,83 +3,74 @@
     margin: unset;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu&display=swap');
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
 
 body {
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 
     .whatsapp-container {
-        width: 414px;
-        height: 100vh;
-        background-image: url('/images/wallpaper.jpg');
+        width: 100%;
+
+        overflow-y: scroll;
+
+        flex: 1;
+        background-image: url('./images/wallpaper.jpg');
 
         display: flex;
         flex-direction: column;
+    }
+
+    i {
+        color: rgb(70, 70, 162);
+    }
+
+    .whatsapp-topbar {
+        height: 33.33%;
+        width: 100%;
+
+
+    }
+
+    .topbar-container {
+        height: 50px;
+        width: 100vw;
+        background-color: rgb(13, 13, 13);
+        display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
 
-        i {
-            color: rgb(70, 70, 162);
-        }
-        .whatsapp-topbar {
-            height: 33.33%;
-            width: 414px;
-
-            .topbar-container {
-                height: 50px;
-                background-color: rgb(13, 13 ,13, 0.9);
-                filter: blur(.5);
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-
-                .profile {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-
-                    p {
-                        color: white;
-                        margin-left: 10px;
-                        font-family: 'Open Sans', sans-serif;
-                        font-weight: 500;
-                    }
-                }
-            }
-        }
-        
-        .whatsapp-chatContainer {
-            height: 33.33%;
-        }
-        .whatsapp-textArea {
-            height: 33.33%;
-
+        .profile {
             display: flex;
-            flex-direction: row;
-            align-items: end;
+            align-items: center;
             justify-content: center;
-            .textArea-container {
-                width: 414px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background-color: rgb(13, 13, 13, 0.8);
-                filter: blur(.5);
-                gap: 10px;
-                height: 50px;
-                border-top: 1px solid rgb(62, 62, 62);
-                .text-container {
-                    background-color: rgb(50, 50, 50);
-                    border-radius: 44px;
-                    border: 1px solid rgb(96, 96, 96);
-                    width: 260px;
-                    height: 25px;
-                    margin-bottom: 2px;
-                }
+
+            p {
+                color: white;
+                margin-left: 10px;
+                font-family: 'Open Sans', sans-serif;
             }
         }
+
+        z-index: 99;
+    }
+
+    .whatsapp-textArea {
+        height: 33.33%;
+
+        display: flex;
+        flex-direction: row;
+        align-items: end;
+        justify-content: center;
+        width: 100%;
+
     }
 }
+
 .batteryNotification{
     /* display: none; */
     position: absolute;
@@ -121,20 +112,41 @@ body {
     display: flex;
     gap: 15px;
 }
+
 #backbutton {
     margin-left: 5px;
 }
-.image{
+
+.image {
     border-radius: 50%;
     height: 36px;
     width: 36px;
 }
+
 .buttonimage {
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: space-between;
 }
+.girl-messsageContainer {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin: 5px 20px 5px 20px;
+}
+
+.you-messsageContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    position: relative;
+    margin: 5px 20px 5px 20px;
+}
+
+.girl-message {
+    display: flex;
+    position: relative;
+
 .messsageContainer{
     height: 25px;
     width: calc(100% + 10px);
@@ -144,8 +156,27 @@ body {
     left: 15px;
     border-radius: 10px;
     background: rgb(59, 59, 59);
-    text-align: start;
+    font-family: 'Open Sans', sans-serif;
+    padding: 5px 10px 5px 10px;
+    max-width: 80%;
+}
+
+.you-message {
     display: flex;
+    position: relative;
+    border-radius: 10px;
+    background-color: #005F4B;
+    font-family: 'Open Sans', sans-serif;
+    padding: 5px 10px 5px 10px;
+    max-width: 80%;
+}
+
+.message-time-fill {
+    display: inline;
+    visibility: hidden;
+    font-size: 11px;
+    font-family: 'Open Sans', sans-serif
+      
     p {
         color: white;
         position: relative;
@@ -156,84 +187,117 @@ body {
         font-family: 'Open Sans', sans-serif;
     }
 }
-.messageTime p{
-    color: rgb(121, 121, 121);
-    font-size: 10px;
+
+.message-time {
     position: absolute;
-    bottom: 2px;
+    bottom: 4px;
     right: 10px;
+    color: rgb(121, 121, 121);
+    font-size: 11px;
+    font-family: 'Open Sans', sans-serif
 }
-.dateContainer{
+
+.dateTextBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 7px;
     height: 18px;
-    width: 50px;
-    position: absolute;
-    top: 65px;
-    left: 177px;
     border-radius: 5px;
-    background-color: rgb(13, 13 ,13);
+    background-color: rgb(13, 13, 13);
     color: rgb(132, 131, 131);
     font-family: 'Open Sans', sans-serif;
     text-align: center;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
 }
+
+.dateContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0 15px
+}
+  
 .dateContainer p{
     margin-top: 1.5px;
 }
+
 .messageCorner{
     position: absolute;
     left: -1px;
     bottom: 0;
-    background: rgb(59, 59 ,59);
+    background: rgb(59, 59, 59);
     width: 10px;
     height: 10px;
     transform: rotate(110deg);
     border-radius: 0px 10px 0px 10px;
-    z-index: 99;
 }
 
-.messageOptions {
-    display: none;
+.you-messageCorner {
     position: absolute;
-    left: 15px;
-    bottom: 65px;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
-
-    .messageOption {
-        width: 150px;
-        height: 25px;
-        border-radius: 10px;
-        background: #005F4B;
-        max-width: 300px;
-        width: auto;
-        padding-right: 10px;
-        margin-bottom: 10px;
-        cursor: pointer;
-
-        p {
-            color: white;
-            position: relative;
-            z-index: 100;
-            margin-left: 12px;
-            margin-top: 3px;
-            font-family: 'Open Sans', sans-serif;
-        }
-    }
-}
-.toggleResponsesButton {
+    right: -1px;
+    bottom: 0;
     background-color: #005F4B;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: unset;
-    cursor: pointer;
-    position: absolute;
-    left: 349px;
-    bottom: 65px;
+    width: 10px;
+    height: 10px;
+    transform: rotate(-20deg);
+    border-radius: 0px 10px 0px 10px;
+}
 
-    i {
-        color: white !important;
+.textArea-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 0;
+    background-color: rgb(13, 13, 13);
+    gap: 10px;
+    height: 50px;
+
+    .text-container {
+        background-color: rgb(50, 50, 50);
+        border-radius: 44px;
+        border: 1px solid rgb(96, 96, 96);
+        flex: 1;
+        height: 25px;
+        margin-bottom: 2px;
     }
+}
+
+.la-plus {
+    margin-left: 5px;
+}
+
+.la-microphone {
+    margin-right: 5px;
+}
+
+.message {
+    color: white;
+    display: inline;
+}
+
+.message-opptions {
+    display: flex;
+    position: relative;
+    border-radius: 10px;
+    background-color: #005F4B;
+    visibility: hidden;
+    font-family: 'Open Sans', sans-serif;
+    padding: 5px 10px 5px 10px;
+    max-width: 80%;
+    color: white;
+}
+
+.message-opptions-container {
+    bottom: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px;
+    width: 100%;
+    background-color: black;
 }
