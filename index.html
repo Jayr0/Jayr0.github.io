@@ -13,6 +13,10 @@
     <script src="components/userChatBuble.js" async></script>
 </head>
 <body>
+<!-- Empty battery overlay -->
+
+
+<!-- Normal view -->
 <div class="topbar-container">
     <div class="buttonimage">
         <div class="profile">
@@ -43,7 +47,11 @@
 </div>
 
 <div class="message-opptions-container">
-
+    <div class="message-opptions" onclick="handleUserMessage(this.innerText)">
+        test test test
+        <div class="you-messageCorner">
+        </div>
+    </div>
 
     <div class="message-opptions" onclick="handleUserMessage(this.innerText)">
         test test test
@@ -51,22 +59,10 @@
         </div>
     </div>
 
-
     <div class="message-opptions" onclick="handleUserMessage(this.innerText)">
         test test test
         <div class="you-messageCorner">
         </div>
-
-
-    </div>
-
-
-    <div class="message-opptions" onclick="handleUserMessage(this.innerText)">
-        test test test
-        <div class="you-messageCorner">
-        </div>
-
-
     </div>
 </div>
 </body>

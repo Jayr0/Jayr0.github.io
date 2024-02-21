@@ -71,7 +71,7 @@ body {
     }
 }
 
-.batteryNotification{
+.batteryNotification {
     /* display: none; */
     position: absolute;
     height: 80px;
@@ -87,7 +87,8 @@ body {
     display: flex;
     justify-content: space-between;
 }
-.batteryIcon{
+
+.batteryIcon {
     height: 80%;
     width: 20%;
     z-index: 102;
@@ -97,18 +98,21 @@ body {
     justify-content: center;
     border-right: 1px solid rgb(123, 123, 123);
 }
-.batteryIcon i{
+
+.batteryIcon i {
     color: white !important;
 }
-.batteryText{
+
+.batteryText {
     color: white;
     font-family: 'Open Sans', sans-serif;
     text-align: center;
     width: 65%;
     text-align: start;
 }
-.callicons{
-    margin-right: 10px; 
+
+.callicons {
+    margin-right: 10px;
     display: flex;
     gap: 15px;
 }
@@ -129,6 +133,7 @@ body {
     align-items: center;
     justify-content: space-between;
 }
+
 .girl-messsageContainer {
     display: flex;
     flex-direction: row;
@@ -146,19 +151,20 @@ body {
 .girl-message {
     display: flex;
     position: relative;
+    border-radius: 10px;
+    background-color: rgb(59, 59, 59);
+    font-family: 'Open Sans', sans-serif;
+    padding: 5px 10px 5px 10px;
+    max-width: 80%;
+}
 
-.messsageContainer{
+.messsageContainer {
     height: 25px;
     width: calc(100% + 10px);
     max-width: 155px;
     position: absolute;
     top: 100px;
     left: 15px;
-    border-radius: 10px;
-    background: rgb(59, 59, 59);
-    font-family: 'Open Sans', sans-serif;
-    padding: 5px 10px 5px 10px;
-    max-width: 80%;
 }
 
 .you-message {
@@ -175,8 +181,8 @@ body {
     display: inline;
     visibility: hidden;
     font-size: 11px;
-    font-family: 'Open Sans', sans-serif
-      
+    font-family: 'Open Sans', sans-serif;
+
     p {
         color: white;
         position: relative;
@@ -218,12 +224,12 @@ body {
     justify-content: center;
     margin: 15px 0 15px
 }
-  
-.dateContainer p{
+
+.dateContainer p {
     margin-top: 1.5px;
 }
 
-.messageCorner{
+.messageCorner {
     position: absolute;
     left: -1px;
     bottom: 0;
