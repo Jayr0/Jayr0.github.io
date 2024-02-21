@@ -31,6 +31,8 @@ const partnerResponses = [
 const messageInterval = 340000; // 5 minutes 40 seconds
 const responseDelay = 12000 // 20 seconds
 const geduldCountDownInterval = 3000; // 3 seconds
+const responseOptionsContainer = document.querySelector('.message-opptions-container');
+
 
 let geduld = 50;
 let geduldCountdownInterval;
@@ -64,6 +66,15 @@ function sendGeduld(newGeduld) {
     });
 }
 
+// Fisher-Yates (aka Knuth) Shuffle function
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
 /**
  * Send a message to the chat and scroll to the bottom of the chat.
  * @param message The message to send.
@@ -83,17 +94,22 @@ function sendMessage(message, messageType) {
     messagesContainer.appendChild(messageElement);
 
     // Scroll to the bottom of the chat
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    setTimeout(() => {
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }, 20);
 }
 
 function startMessageCycle() {
     sendMessage(partnerMessages[currentMessageIndex], "partner");
 
+    const shuffledResponses = shuffleArray(messageResponses[currentMessageIndex]);
+
     const messageElements = document.querySelectorAll(".message-opptions");
     messageElements.forEach((element, index) => {
-        element.innerText = messageResponses[currentMessageIndex][index];
-        element.style.visibility = "visible";
+        element.innerText = shuffledResponses[index];
     });
+    responseOptionsContainer.style.display = "flex";
+
 
     geduldCountdownInterval = setInterval(() => {
         setCurrentGeduld(-1);
@@ -101,10 +117,7 @@ function startMessageCycle() {
 }
 
 async function handleUserMessage(message) {
-    const messageElements = document.querySelectorAll(".message-opptions");
-    messageElements.forEach((element) => {
-        element.style.visibility = "hidden";
-    });
+    responseOptionsContainer.style.display = "none";
 
     sendMessage(message, "user");
 
