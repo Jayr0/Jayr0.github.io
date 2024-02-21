@@ -4,16 +4,24 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>whatsapp interface</title>
-    <link
-            rel="stylesheet"
-            href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
-    />
+    <link rel="stylesheet" href="fonts/line-awesome.min.css"/>
     <link rel="stylesheet" href="main.css"/>
     <script src="components/partnerChatBuble.js" async></script>
     <script src="components/userChatBuble.js" async></script>
 </head>
 <body>
 <!-- Empty battery overlay -->
+<div id="batteryOverlay" class="emptyBatteryOverlay">
+    <div class="batteryNotification">
+        <div class="batteryIcon">
+            <i class="las la-battery-quarter la-2x"></i>
+        </div>
+        <div class="batteryText">
+            <p>Je telefoon is bijna leeg,<br>
+                laad je telefoon op.</p>
+        </div>
+    </div>
+</div>
 
 
 <!-- Normal view -->
@@ -69,3 +77,4 @@
 </html>
 
 <script src="script.js"></script>
+<script src="scripts/emptyBattery.js"></script>

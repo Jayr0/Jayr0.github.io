@@ -5,11 +5,9 @@
 
 html, body {
     height: 100%;
-    overflow: hidden;
 }
 
 body {
-    overflow: hidden;
     display: flex;
     flex-direction: column;
 
@@ -71,20 +69,27 @@ body {
     }
 }
 
-.batteryNotification {
-    /* display: none; */
+.emptyBatteryOverlay {
+    display: none;
+    height: 100%;
+    width: 100%;
     position: absolute;
+    background-color: rgb(0, 0, 0, .5);
+    z-index: 100;
+    justify-content: center;
+}
+
+.batteryNotification {
+    margin: 40px;
     height: 80px;
     width: 400px;
     border-radius: 25px;
-    top: 8px;
     border: 1px solid rgb(96, 96, 96);
     background-color: rgb(74, 74, 74, .99);
     filter: blur(2);
     z-index: 101;
     display: flex;
     align-items: center;
-    display: flex;
     justify-content: space-between;
 }
 
@@ -289,7 +294,6 @@ body {
     position: relative;
     border-radius: 10px;
     background-color: #005F4B;
-    visibility: hidden;
     font-family: 'Open Sans', sans-serif;
     padding: 5px 10px 5px 10px;
     max-width: 80%;
@@ -298,12 +302,11 @@ body {
 
 .message-opptions-container {
     bottom: 50px;
-    display: flex;
+    display: none;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     gap: 5px;
     padding: 10px;
-    width: 100%;
     background-color: black;
 }
