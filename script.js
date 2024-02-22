@@ -54,7 +54,9 @@ if (!!debugMode) {
     geduldCountDownInterval = 1000; // 1 seconds
 }
 
-let geduld = 50;
+let geduld = 50
+sendGeduld(geduld);
+
 let geduldCountdownInterval;
 
 let currentMessageIndex = 0;
