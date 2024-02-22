@@ -35,9 +35,24 @@ const messageElements = document.querySelectorAll(".message-opptions");
 const sendTextAreaMessageButton = document.querySelector('#sendButton');
 const textArea = document.querySelector("#text-area")
 
-const messageInterval = 340000; // 5 minutes 40 seconds
-const responseDelay = 12000 // 20 seconds
-const geduldCountDownInterval = 3000; // 3 seconds
+function getUrlParameter(name) {
+    name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
+    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    const results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+const debugMode = getUrlParameter('debug');
+
+let messageInterval = 300000; // 5 minutes
+let responseDelay = 20000 // 20 seconds
+let geduldCountDownInterval = 3000; // 3 seconds
+
+if (!!debugMode) {
+    messageInterval = 2000; // 2 seconds
+    responseDelay = 1000 // 1 second
+    geduldCountDownInterval = 1000; // 1 seconds
+}
 
 let geduld = 50;
 let geduldCountdownInterval;
