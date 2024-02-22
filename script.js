@@ -6,6 +6,7 @@ const partnerMessages = [
     "Ben je alleen thuis??",
     "Met wie was je gister uit??",
     "Ik ben er bijna…",
+    "WIE IS EMMMMAAA!???"
 ]
 
 const messageResponses = [
@@ -34,9 +35,24 @@ const messageElements = document.querySelectorAll(".message-opptions");
 const sendTextAreaMessageButton = document.querySelector('#sendButton');
 const textArea = document.querySelector("#text-area")
 
-const messageInterval = 340000; // 5 minutes 40 seconds
-const responseDelay = 12000 // 20 seconds
-const geduldCountDownInterval = 3000; // 3 seconds
+function getUrlParameter(name) {
+    name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
+    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    const results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+const debugMode = getUrlParameter('debug');
+
+let messageInterval = 300000; // 5 minutes
+let responseDelay = 20000 // 20 seconds
+let geduldCountDownInterval = 3000; // 3 seconds
+
+if (!!debugMode) {
+    messageInterval = 2000; // 2 seconds
+    responseDelay = 1000 // 1 second
+    geduldCountDownInterval = 1000; // 1 seconds
+}
 
 let geduld = 50;
 let geduldCountdownInterval;
@@ -141,8 +157,12 @@ async function handleUserMessage(message) {
     const index = messageResponses[currentMessageIndex].indexOf(message);
     if (index === 0) {
         setGeduld(20);
+        console.info("Correct message, Geduld +20");
     } else if (index === 2) {
         setGeduld(-10);
+        console.info("Wrong message, Geduld -10");
+    } else {
+        console.info("\"Meh\" message, Geduld -5");
     }
 
     const partnerResponseMessage = partnerResponses[currentMessageIndex][index];
@@ -189,8 +209,10 @@ function handleTextFieldMessage(message) {
 
     if (messageContainsValidWord) {
         setGeduld(100);
+        console.info("Correct last message, Geduld +100");
     } else {
         setGeduld(-100);
+        console.info("Wrong last message, Geduld -100");
     }
 }
 
