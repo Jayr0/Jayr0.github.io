@@ -1,27 +1,35 @@
 const batteryOverlay = document.querySelector('#batteryOverlay');
 const delayUntilEmpty = 780000; // 13 minutes
+let battery;
 
 function hideOverlay() {
     batteryOverlay.style.display = 'none';
 }
 
-function emptyBattery() {
+function showOverlay() {
     batteryOverlay.style.display = 'flex';
+}
 
-    // start listening to if the batteri is goiing to get charged or is already charging. then hide the overlay
-    const battery = navigator
+function emptyBattery() {
+    showOverlay();
+
+    // start listening to if the battery is going to get charged or is already charging. then hide the overlay
+    navigator
         .getBattery()
-        .then((battery) => {
-            if (battery.charging) {
-                hideOverlay();
-                return
-            }
-            battery.addEventListener('chargingchange', () => {
-                if (battery.charging) {
-                    hideOverlay();
-                }
-            });
+        .then((b) => {
+            battery = b;
+            battery.addEventListener('chargingchange', handleChargingChange);
+            handleChargingChange();
         });
+}
+
+
+function handleChargingChange(event) {
+    if (battery.charging) {
+        hideOverlay();
+    } else {
+        showOverlay();
+    }
 }
 
 if (!navigator.getBattery) {
