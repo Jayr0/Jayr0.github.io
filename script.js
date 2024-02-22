@@ -129,8 +129,12 @@ function sendMessage(message, messageType) {
 async function startMessageCycle() {
     sendMessage(partnerMessages[currentMessageIndex], "partner");
 
-    new Audio('assets/audio/recieveMessage.mp3').play();
-
+    try {
+        new Audio('assets/audio/recieveMessage.mp3').play();
+    } catch (e) {
+        console.error(e);
+    }
+    
     // If not the last message
     if (currentMessageIndex < partnerMessages.length - 1) {
         const shuffledResponses = shuffleArray(messageResponses[currentMessageIndex]);
