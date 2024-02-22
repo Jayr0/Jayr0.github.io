@@ -6,6 +6,7 @@ const partnerMessages = [
     "Ben je alleen thuis??",
     "Met wie was je gister uit??",
     "Ik ben er bijna…",
+    "WIE IS EMMMMAAA!???"
 ]
 
 const messageResponses = [
@@ -141,8 +142,12 @@ async function handleUserMessage(message) {
     const index = messageResponses[currentMessageIndex].indexOf(message);
     if (index === 0) {
         setGeduld(20);
+        console.info("Correct message, Geduld +20");
     } else if (index === 2) {
         setGeduld(-10);
+        console.info("Wrong message, Geduld -10");
+    } else {
+        console.info("\"Meh\" message, Geduld -5");
     }
 
     const partnerResponseMessage = partnerResponses[currentMessageIndex][index];
@@ -189,8 +194,10 @@ function handleTextFieldMessage(message) {
 
     if (messageContainsValidWord) {
         setGeduld(100);
+        console.info("Correct last message, Geduld +100");
     } else {
         setGeduld(-100);
+        console.info("Wrong last message, Geduld -100");
     }
 }
 
