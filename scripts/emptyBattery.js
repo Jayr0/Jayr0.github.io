@@ -11,9 +11,6 @@ function showOverlay() {
 }
 
 function emptyBattery() {
-    showOverlay();
-
-    // start listening to if the battery is going to get charged or is already charging. then hide the overlay
     navigator
         .getBattery()
         .then((b) => {
@@ -24,7 +21,7 @@ function emptyBattery() {
 }
 
 
-function handleChargingChange(event) {
+function handleChargingChange() {
     if (battery.charging) {
         hideOverlay();
     } else {
