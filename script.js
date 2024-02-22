@@ -45,7 +45,7 @@ const debugMode = getUrlParameter('debug');
 
 let messageInterval = 210000; // 3 minutes 30 seconds
 let responseDelay = 20000 // 20 seconds
-let geduldCountDownInterval = 3000; // 3 seconds
+let geduldCountDownInterval = 6000; // 6 seconds
 
 if (!!debugMode) {
     messageInterval = 2000; // 2 seconds
@@ -162,13 +162,13 @@ async function handleUserMessage(message) {
 
     const index = messageResponses[currentMessageIndex].indexOf(message);
     if (index === 0) {
-        setGeduld(20);
+        setGeduld(30);
         console.info("Correct message, Geduld +20");
     } else if (index === 2) {
         setGeduld(-10);
         console.info("Wrong message, Geduld -10");
     } else {
-        console.info("\"Meh\" message, Geduld -5");
+        console.info("\"Meh\" message, Geduld 0");
     }
 
     const partnerResponseMessage = partnerResponses[currentMessageIndex][index];
