@@ -78,13 +78,13 @@ function setGeduld(valueChange) {
 }
 
 function sendGeduld(newGeduld) {
-    fetch('https://api.rutgerpronk.com/geduld', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({newGeduld})
-    });
+//     fetch('https://api.rutgerpronk.com/geduld', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({newGeduld})
+//     });
 }
 
 // Fisher-Yates (aka Knuth) Shuffle function
@@ -95,12 +95,6 @@ function shuffleArray(array) {
         [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
     }
     return shuffledArray;
-}
-
-function vibratePhone() {
-    if (navigator.vibrate) {
-        navigator.vibrate([200, 200, 200]);
-    }
 }
 
 function createMessageElement(message, messageType) {
@@ -132,9 +126,10 @@ function sendMessage(message, messageType) {
 
 }
 
-function startMessageCycle() {
+async function startMessageCycle() {
     sendMessage(partnerMessages[currentMessageIndex], "partner");
-    vibratePhone();
+
+    new Audio('assets/audio/recieveMessage.mp3').play();
 
     // If not the last message
     if (currentMessageIndex < partnerMessages.length - 1) {
