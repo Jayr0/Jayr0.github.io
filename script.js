@@ -44,7 +44,7 @@ function getUrlParameter(name) {
 
 const debugMode = getUrlParameter('debug');
 
-let messageInterval = 300000; // 5 minutes
+let messageInterval = 210000; // 3 minutes 30 seconds
 let responseDelay = 20000 // 20 seconds
 let geduldCountDownInterval = 3000; // 3 seconds
 
