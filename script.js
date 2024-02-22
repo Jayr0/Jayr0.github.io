@@ -162,6 +162,8 @@ async function handleUserMessage(message) {
 
     sendMessage(message, "user");
 
+    await new Audio('assets/audio/sendMessage.mp3').play();
+
     clearInterval(geduldCountdownInterval);
 
     const index = messageResponses[currentMessageIndex].indexOf(message);
