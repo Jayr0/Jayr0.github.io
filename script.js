@@ -98,6 +98,12 @@ function shuffleArray(array) {
     return shuffledArray;
 }
 
+function vibratePhone() {
+    if (navigator.vibrate) {
+        navigator.vibrate([200, 200, 200]);
+    }
+}
+
 function createMessageElement(message, messageType) {
     const now = new Date();
     // To add a leading zero to the hours and minutes when they are less than 10
@@ -124,10 +130,12 @@ function sendMessage(message, messageType) {
     setTimeout(() => {
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }, 20);
+
 }
 
 function startMessageCycle() {
     sendMessage(partnerMessages[currentMessageIndex], "partner");
+    vibratePhone();
 
     // If not the last message
     if (currentMessageIndex < partnerMessages.length - 1) {
