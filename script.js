@@ -6,7 +6,7 @@ const partnerMessages = [
     "Ben je alleen thuis??",
     "Met wie was je gister uit??",
     "Ik ben er bijna…",
-    "WIE IS EMMMMAAA!???"
+    "Ik ben er, wie is Emma!!?"
 ]
 
 const messageResponses = [
