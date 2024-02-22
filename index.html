@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Schatje ❤️</title>
     <link rel="icon" type="image/png" href="images/profile_picture.png">
-    <link rel="shortcut icon" type="image/png" href="images/profile_picture.png" />
+    <link rel="shortcut icon" type="image/png" href="images/profile_picture.png"/>
     <link rel="stylesheet" href="fonts/line-awesome.min.css"/>
     <link rel="stylesheet" href="main.css"/>
     <script src="components/partnerChatBuble.js" async></script>
@@ -74,6 +74,19 @@
 </div>
 </body>
 </html>
+
+<script type="text/javascript">
+    let sureToRefresh = false;
+    window.addEventListener("beforeunload", function (e) {
+        if (!sureToRefresh) {
+            e.preventDefault()
+            sureToRefresh = true;
+            setTimeout(() => {
+                sureToRefresh = false;
+            }, 5000);
+        }
+    });
+</script>
 
 <script src="script.js"></script>
 <script src="scripts/emptyBattery.js"></script>
