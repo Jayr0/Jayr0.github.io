@@ -17,7 +17,7 @@ body {
         overflow-y: scroll;
 
         flex: 1;
-        background-image: url('./images/wallpaper.jpg');
+        background-image: url('./assets/images/wallpaper.jpg');
 
         display: flex;
         flex-direction: column;
