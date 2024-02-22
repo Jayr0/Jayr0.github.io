@@ -32,7 +32,6 @@ const partnerResponses = [
 const messagesContainer = document.querySelector('#messages-container');
 const responseOptionsContainer = document.querySelector('.message-opptions-container');
 const messageElements = document.querySelectorAll(".message-opptions");
-const sendTextAreaMessageButton = document.querySelector('#sendButton');
 const textArea = document.querySelector("#text-area")
 
 function getUrlParameter(name) {
