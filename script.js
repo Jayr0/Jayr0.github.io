@@ -6,7 +6,7 @@ const partnerMessages = [
     "Ben je alleen thuis??",
     "Met wie was je gister uit??",
     "Ik ben er bijna…",
-    "WIE IS EMMMMAAA!???"
+    "Ik ben er, wie is Emma!!?"
 ]
 
 const messageResponses = [
@@ -32,7 +32,6 @@ const partnerResponses = [
 const messagesContainer = document.querySelector('#messages-container');
 const responseOptionsContainer = document.querySelector('.message-opptions-container');
 const messageElements = document.querySelectorAll(".message-opptions");
-const sendTextAreaMessageButton = document.querySelector('#sendButton');
 const textArea = document.querySelector("#text-area")
 
 function getUrlParameter(name) {
@@ -44,7 +43,7 @@ function getUrlParameter(name) {
 
 const debugMode = getUrlParameter('debug');
 
-let messageInterval = 300000; // 5 minutes
+let messageInterval = 210000; // 3 minutes 30 seconds
 let responseDelay = 20000 // 20 seconds
 let geduldCountDownInterval = 3000; // 3 seconds
 
@@ -98,6 +97,12 @@ function shuffleArray(array) {
     return shuffledArray;
 }
 
+function vibratePhone() {
+    if (navigator.vibrate) {
+        navigator.vibrate([200, 200, 200]);
+    }
+}
+
 function createMessageElement(message, messageType) {
     const now = new Date();
     // To add a leading zero to the hours and minutes when they are less than 10
@@ -124,10 +129,12 @@ function sendMessage(message, messageType) {
     setTimeout(() => {
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }, 20);
+
 }
 
 function startMessageCycle() {
     sendMessage(partnerMessages[currentMessageIndex], "partner");
+    vibratePhone();
 
     // If not the last message
     if (currentMessageIndex < partnerMessages.length - 1) {
@@ -153,6 +160,8 @@ async function handleUserMessage(message) {
     responseOptionsContainer.style.display = "none";
 
     sendMessage(message, "user");
+
+    await new Audio('assets/audio/sendMessage.mp3').play();
 
     clearInterval(geduldCountdownInterval);
 
